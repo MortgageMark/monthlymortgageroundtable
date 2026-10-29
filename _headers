@@ -1,0 +1,5 @@
+/*.ics
+  Content-Type: text/calendar; charset=utf-8
+  Cache-Control: public, max-age=0, must-revalidate
+/sessions.json
+  Cache-Control: public, max-age=0, must-revalidate
