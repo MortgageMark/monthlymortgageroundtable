@@ -26,17 +26,17 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:series@monthlymortgageroundtable.com
-DTSTAMP:20261029T120939Z
+DTSTAMP:20261029T130052Z
 SEQUENCE:0
 DTSTART;TZID=America/Chicago:20261104T103000
 DTEND;TZID=America/Chicago:20261104T113000
 RRULE:FREQ=MONTHLY;BYDAY=1WE
 SUMMARY:Monthly Mortgage Roundtable
-DESCRIPTION:https://www.MonthlyMortgageRoundtable.com\n\nStay current. Lea
- rn what's working. Join and get details at the link above. If the date or
-  time changes\, the latest is always on that page.
-LOCATION:https://www.MonthlyMortgageRoundtable.com
-URL:https://www.MonthlyMortgageRoundtable.com
+DESCRIPTION:https://MonthlyMortgageRoundtable.com\n\nStay current. Learn w
+ hat's working. Join and get details at the link above. If the date or tim
+ e changes\, the latest is always on that page.
+LOCATION:https://MonthlyMortgageRoundtable.com
+URL:https://MonthlyMortgageRoundtable.com
 STATUS:CONFIRMED
 TRANSP:OPAQUE
 BEGIN:VALARM
