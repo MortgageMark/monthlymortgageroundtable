@@ -80,6 +80,7 @@ main .wrap{padding-top:36px;padding-bottom:20px}
 .sign .fine{font-size:13px;color:#C9D3DA;line-height:1.5}
 .sign .hp{position:absolute;left:-9999px}
 .sign .ok{display:none;font:700 22px 'Kadwa',Georgia,serif;color:var(--green)}
+.sign #signAgain{margin-top:14px;font-size:16px;width:auto}
 .sign .err{display:none;color:#FFD9D0;font-size:15px}
 @media(max-width:640px){.sign form{grid-template-columns:1fr}.sign{padding:26px 18px}}
 .sec{margin-top:44px}
@@ -186,7 +187,7 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
       <div class="full fine">By signing up, you agree to receive communications about this webinar and related news. You can unsubscribe at any time. Your information is not sold.</div>
       <div class="full err" id="signErr">Something went wrong. Please try again in a moment.</div>
     </form>
-    <div class="ok" id="signOk">Thank you. You are on the list.</div>
+    <div class="ok" id="signOk">Thank you. You are on the list.<br><button type="button" class="btn alt" id="signAgain">Sign up another person</button></div>
   </section>
 
 </div>
@@ -345,7 +346,6 @@ loadCfg().then(function(cfg){
 
 (function(){
   var f=document.getElementById('signForm'); if(!f) return;
-  try{ if(localStorage.getItem('mmrSigned')){f.style.display='none';document.getElementById('signOk').style.display='block'} }catch(e){}
   f.addEventListener('submit',function(e){
     e.preventDefault();
     var b=document.getElementById('signBtn'), er=document.getElementById('signErr'); er.style.display='none'; b.disabled=true; b.textContent='Sending...';
@@ -353,7 +353,7 @@ loadCfg().then(function(cfg){
     fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body}).then(function(r){
       if(!r.ok) throw new Error('bad');
       f.style.display='none'; document.getElementById('signOk').style.display='block';
-      try{localStorage.setItem('mmrSigned','1')}catch(e){}
+      b.disabled=false;b.textContent='Sign me up';f.reset();
     }).catch(function(){er.style.display='block';b.disabled=false;b.textContent='Sign me up'});
   });
 })();
@@ -363,6 +363,15 @@ loadCfg().then(function(cfg){
   var hide={r:false,f:false};function upd(){s.classList.toggle('show',!hide.r&&!hide.f)}
   new IntersectionObserver(function(e){hide.r=e[0].isIntersecting;upd()}).observe(r);
   var f=document.getElementById('signup'); if(f) new IntersectionObserver(function(e){hide.f=e[0].isIntersecting;upd()}).observe(f);
+})();
+
+(function(){
+  var a=document.getElementById('signAgain'); if(!a) return;
+  a.addEventListener('click',function(){
+    document.getElementById('signOk').style.display='none';
+    document.getElementById('signForm').style.display='grid';
+    var i=document.getElementById('fFirst'); if(i) i.focus();
+  });
 })();
 </script>
 </body>
