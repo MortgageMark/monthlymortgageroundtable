@@ -9,14 +9,14 @@ REFRESH-INTERVAL;VALUE=DURATION:PT6H
 X-PUBLISHED-TTL:PT6H
 BEGIN:VEVENT
 UID:session-2027-07@monthlymortgageroundtable.com
-DTSTAMP:20261029T104714Z
+DTSTAMP:20261029T110443Z
 SEQUENCE:0
 DTSTART:20270707T153000Z
 DTEND:20270707T163000Z
 SUMMARY:Monthly Mortgage Roundtable
 DESCRIPTION:https://www.MonthlyMortgageRoundtable.com\n\nStay current. Lea
- rn what's working. Register and get details at the link above. If the dat
- e or time changes\, the latest is always on that page.
+ rn what's working. Join and get details at the link above. If the date or
+  time changes\, the latest is always on that page.
 LOCATION:https://www.MonthlyMortgageRoundtable.com
 URL:https://www.MonthlyMortgageRoundtable.com
 STATUS:CONFIRMED

@@ -61,6 +61,25 @@ main .wrap{padding-top:36px;padding-bottom:20px}
 .cd-live{display:none;font:700 30px 'Kadwa',Georgia,serif;color:var(--ink)}
 .cd.live .cd-row{display:none}.cd.live .cd-live{display:block}
 .cd.live .cd-h{margin-bottom:8px}
+.btn.big{font-size:26px;padding:20px 52px;border-radius:10px;box-shadow:0 6px 18px rgba(42,52,61,.25)}
+#regLive{margin-top:14px;font-family:'Open Sans',Arial,sans-serif}
+.join .btn.big{animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 6px 18px rgba(42,52,61,.25)}50%{box-shadow:0 6px 28px rgba(146,193,59,.75)}}
+@media (prefers-reduced-motion:reduce){.join .btn.big{animation:none}}
+.sign{margin-top:44px;background:var(--slate);color:#fff;border-radius:14px;padding:34px 28px}
+.sign h2{font-family:'Kadwa',Georgia,serif;color:var(--green);margin:0 0 10px;font-size:30px}
+.sign p{color:#E4EAEE;line-height:1.55;margin:0 0 12px}
+.sign .why{font-size:15px;color:#C9D3DA}
+.sign form{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.sign label{display:block;font:600 13px 'Open Sans',Arial,sans-serif;letter-spacing:.04em;margin-bottom:5px;color:#fff}
+.sign input[type=text],.sign input[type=email],.sign input[type=tel]{width:100%;box-sizing:border-box;font:400 17px 'Open Sans',Arial,sans-serif;padding:13px 14px;border-radius:8px;border:2px solid transparent;background:#fff;color:var(--slate)}
+.sign input:focus{outline:none;border-color:var(--green)}
+.sign .full{grid-column:1/-1}
+.sign .fine{font-size:13px;color:#C9D3DA;line-height:1.5}
+.sign .hp{position:absolute;left:-9999px}
+.sign .ok{display:none;font:700 22px 'Kadwa',Georgia,serif;color:var(--green)}
+.sign .err{display:none;color:#FFD9D0;font-size:15px}
+@media(max-width:640px){.sign form{grid-template-columns:1fr}.sign{padding:26px 18px}}
 .sec{margin-top:44px}
 .sec h2{font-size:clamp(26px,3.6vw,36px);margin-bottom:6px}
 .sec h2:after{content:"";display:block;width:64px;height:5px;background:var(--green);margin-top:12px}
@@ -118,7 +137,7 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
       <h2 id="nDate">Loading…</h2>
       <div class="when" id="nTime"></div>
       <div class="loc" id="nLocal"></div>
-      <div class="loc">Zoom Webinar. Free to attend. Registration is required.</div>
+      <div class="loc" id="nNote">Zoom Webinar. Free to attend. Registration is required.</div>
     </div>
     <div><a id="reg" class="btn go" href="#">Register now</a></div>
   </section>
@@ -131,7 +150,7 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
       <div class="unit"><div class="flip" data-u="m"><div class="top"><span>00</span></div><div class="bot"><span>00</span></div><div class="ft"><span>00</span></div><div class="fb"><span>00</span></div></div><div class="lbl">Minutes</div></div>
       <div class="unit"><div class="flip" data-u="s"><div class="top"><span>00</span></div><div class="bot"><span>00</span></div><div class="ft"><span>00</span></div><div class="fb"><span>00</span></div></div><div class="lbl">Seconds</div></div>
     </div>
-    <div class="cd-live" id="cdLive">We are live now.</div>
+    <div class="cd-live" id="cdLive">We are live now.<br><a class="btn go big" id="regLive" href="#">Join now</a></div>
   </section>
 
   <section class="sec" id="cal">
@@ -163,6 +182,25 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
         </ol>
       </div>
     </div>
+  </section>
+
+  <section class="sign" id="signup" aria-labelledby="signH">
+    <h2 id="signH">Stay in the loop</h2>
+    <p>Sign up to get content from each class, such as the slides and highlights, plus our monthly newsletter with industry news and what is working for other loan officers.</p>
+    <p class="why">There is no registration for the webinar, so this is also how we let you know if the date, the time, or anything else about the class changes, and what else we have coming up.</p>
+    <form name="roundtable-signup" method="POST" action="/?thanks=1" data-netlify="true" netlify-honeypot="bot-field" id="signForm">
+      <input type="hidden" name="form-name" value="roundtable-signup">
+      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <div><label for="fFirst">First name</label><input type="text" id="fFirst" name="first_name" autocomplete="given-name" required></div>
+      <div><label for="fLast">Last name</label><input type="text" id="fLast" name="last_name" autocomplete="family-name" required></div>
+      <div><label for="fCo">Company</label><input type="text" id="fCo" name="company" autocomplete="organization"></div>
+      <div><label for="fPh">Phone number</label><input type="tel" id="fPh" name="phone" autocomplete="tel"></div>
+      <div class="full"><label for="fEm">Email address</label><input type="email" id="fEm" name="email" autocomplete="email" required></div>
+      <div class="full"><button class="btn go" type="submit" id="signBtn">Sign me up</button></div>
+      <div class="full fine">By signing up, you agree to receive emails from CMG Home Loans about this webinar and related news. You can unsubscribe at any time. Your information is not sold.</div>
+      <div class="full err" id="signErr">Something went wrong. Please try again in a moment.</div>
+    </form>
+    <div class="ok" id="signOk">Thank you. You are on the list.</div>
   </section>
 
   <section class="sec">
@@ -222,7 +260,12 @@ loadCfg().then(function(cfg){
   var s=up.filter(function(x){return x.status!=='cancelled'})[0];
   if(!s){$('nDate').textContent='Check back soon';return}
   var title=cfg.title;
-  $('reg').href=cfg.registerUrl;
+  var join=cfg.registrationRequired===false&&cfg.joinUrl;
+  if(join){
+    var r=$('reg'); r.href=cfg.joinUrl; r.textContent='Join now'; r.classList.add('big'); r.parentNode.classList.add('join');
+    r.target='_blank'; r.rel='noopener'; $('regLive').href=cfg.joinUrl;
+    $('nNote').textContent='Zoom Webinar. Free to attend. No registration required. Just click Join now.';
+  } else { $('reg').href=cfg.registerUrl; $('regLive').href=cfg.registerUrl; }
   $('nDate').textContent=fDate(s.st,TZ);
   $('nTime').textContent=fTime(s.st,TZ)+' to '+fTime(s.en,TZ,true);
   var loc=fTime(s.st,undefined,true), ct=fTime(s.st,TZ,true), localDay=fDate(s.st,undefined);
@@ -286,6 +329,21 @@ loadCfg().then(function(cfg){
   $('nDate').textContent='Check back soon';
   $('nTime').textContent='We could not load the schedule. Please refresh.';
 });
+})();
+
+(function(){
+  var f=document.getElementById('signForm'); if(!f) return;
+  try{ if(localStorage.getItem('mmrSigned')){f.style.display='none';document.getElementById('signOk').style.display='block'} }catch(e){}
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var b=document.getElementById('signBtn'), er=document.getElementById('signErr'); er.style.display='none'; b.disabled=true; b.textContent='Sending...';
+    var body=new URLSearchParams(new FormData(f)).toString();
+    fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:body}).then(function(r){
+      if(!r.ok) throw new Error('bad');
+      f.style.display='none'; document.getElementById('signOk').style.display='block';
+      try{localStorage.setItem('mmrSigned','1')}catch(e){}
+    }).catch(function(){er.style.display='block';b.disabled=false;b.textContent='Sign me up'});
+  });
 })();
 </script>
 </body>
