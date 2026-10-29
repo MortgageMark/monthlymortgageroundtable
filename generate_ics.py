@@ -65,7 +65,7 @@ def lt(s):
     return s.strftime("%Y%m%dT%H%M%S")
 
 
-DESC = LINK + "\n\n" + cfg["tagline"] + ". Register and get details at the link above. If the date or time changes, the latest is always on that page."
+DESC = LINK + "\n\n" + cfg["tagline"] + " Register and get details at the link above. If the date or time changes, the latest is always on that page."
 ALARM = ["BEGIN:VALARM", "TRIGGER:-PT15M", "ACTION:DISPLAY",
          "DESCRIPTION:Monthly Mortgage Roundtable starts in 15 minutes", "END:VALARM"]
 HEAD = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Monthly Mortgage Roundtable//Calendar//EN",

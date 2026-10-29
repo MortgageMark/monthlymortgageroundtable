@@ -2,7 +2,7 @@
   "registerUrl": "https://us02web.zoom.us/webinar/register/WN_pOHZPHIpRVeca8INPfO1dg",
   "pageUrl": "https://www.MonthlyMortgageRoundtable.com",
   "title": "Monthly Mortgage Roundtable",
-  "tagline": "News, updates, and programs",
+  "tagline": "Stay current. Learn what's working.",
   "series": {
     "rule": "FREQ=MONTHLY;BYDAY=1WE",
     "time": "10:30",
