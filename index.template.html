@@ -18,17 +18,20 @@ a{color:var(--teal)}
 .hero{background:var(--slate);color:#fff;position:relative;overflow:hidden}
 .hero svg.tx{position:absolute;right:-60px;top:-30px;width:520px;opacity:.9;pointer-events:none}
 .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 100%,rgba(146,193,59,.28),transparent 55%),radial-gradient(circle at 85% 20%,rgba(19,136,144,.30),transparent 50%)}
-.hero .wrap{position:relative;padding-top:40px;padding-bottom:56px}
-.logo{display:block;width:220px;height:auto}
-.kicker{color:var(--green);font-weight:700;letter-spacing:.28em;text-transform:uppercase;font-size:14px;margin-top:44px}
-.hero h1{font-size:clamp(40px,7vw,76px);letter-spacing:.03em;text-transform:uppercase;margin-top:10px}
-.tag2{margin-top:6px}
-.rule{width:96px;height:6px;background:var(--green);margin:22px 0}
+.topbar{position:relative;padding:18px 28px 0}
+.hero .wrap{position:relative;padding-top:22px;padding-bottom:40px}
+.logo{display:block;width:170px;height:auto}
+.kicker{color:var(--green);font-weight:700;letter-spacing:.28em;text-transform:uppercase;font-size:14px}
+.hero h1{font-size:clamp(38px,6vw,64px);letter-spacing:.03em;text-transform:uppercase;margin-top:8px}
+.hero h1 span{display:block}
+@media(min-width:900px){.hero h1 span{display:inline}.hero h1 .l3{display:block}}
+.rule{width:96px;height:6px;background:var(--green);margin:18px 0}
 .tag{font-size:clamp(18px,2.4vw,24px);color:#d5e3e6}
 main .wrap{padding-top:36px;padding-bottom:20px}
 .banner{display:none;border-left:8px solid var(--green);background:var(--slate);color:#fff;padding:18px 22px;border-radius:6px;margin-bottom:24px;font-size:18px}
 .banner b{color:var(--green)}
-.card{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:28px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+.card{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:28px;display:grid;grid-template-columns:1fr;gap:22px}
+.joinbar .btn{display:block;width:100%}
 .card .lab{font-size:13px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--teal)}
 .card h2{font-size:clamp(28px,4.4vw,44px);margin:6px 0 4px}
 .card .when{font-size:20px;font-weight:600}
@@ -61,7 +64,7 @@ main .wrap{padding-top:36px;padding-bottom:20px}
 .cd-live{display:none;font:700 30px 'Kadwa',Georgia,serif;color:var(--ink)}
 .cd.live .cd-row{display:none}.cd.live .cd-live{display:block}
 .cd.live .cd-h{margin-bottom:8px}
-.btn.big{font-size:26px;padding:20px 52px;border-radius:10px;box-shadow:0 6px 18px rgba(42,52,61,.25)}
+.btn.big{font-size:30px;padding:24px 52px;border-radius:12px;box-shadow:0 6px 18px rgba(42,52,61,.25)}
 #regLive{margin-top:14px;font-family:'Open Sans',Arial,sans-serif}
 .join .btn.big{animation:pulse 2.4s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 6px 18px rgba(42,52,61,.25)}50%{box-shadow:0 6px 28px rgba(146,193,59,.75)}}
@@ -81,6 +84,12 @@ main .wrap{padding-top:36px;padding-bottom:20px}
 .sign .err{display:none;color:#FFD9D0;font-size:15px}
 @media(max-width:640px){.sign form{grid-template-columns:1fr}.sign{padding:26px 18px}}
 .sec{margin-top:44px}
+.band{background:#EEF2F4;margin-top:48px;padding:40px 0 36px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.band .wrap{padding-top:0;padding-bottom:0}
+.band .sub{background:#fff}
+#cal h2{font-size:clamp(26px,3.6vw,36px);margin-bottom:6px}
+#cal h2:after{content:"";display:block;width:64px;height:5px;background:var(--green);margin-top:12px}
+#cal p.lead{color:var(--mute);margin:14px 0 18px;max-width:720px}
 .sec h2{font-size:clamp(26px,3.6vw,36px);margin-bottom:6px}
 .sec h2:after{content:"";display:block;width:64px;height:5px;background:var(--green);margin-top:12px}
 .sec p.lead{color:var(--mute);margin:14px 0 18px;max-width:720px}
@@ -110,6 +119,8 @@ footer .wrap{padding-top:30px;padding-bottom:36px}
 footer img{width:150px;display:block;margin-bottom:16px}
 footer p{font-size:13.5px;line-height:1.55;max-width:960px}
 @media(max-width:480px){.grid{grid-template-columns:1fr}}
+.stk{display:none}
+@media(max-width:640px){.stk{position:fixed;left:12px;right:12px;bottom:12px;z-index:50;background:var(--green);color:var(--slate);font:700 22px 'Open Sans',Arial,sans-serif;text-align:center;text-decoration:none;padding:16px;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.35);transform:translateY(140%);transition:transform .25s}.stk.show{display:block;transform:none}body{padding-bottom:88px}}
 @media(max-width:640px){.card{grid-template-columns:1fr}.hero svg.tx{width:340px;right:-90px}.btn{width:100%}}
 </style>
 </head>
@@ -117,13 +128,12 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
 <div class="bar"></div>
 <header class="hero">
   <svg class="tx" viewBox="0 0 1062 1000" aria-hidden="true"><path d="%%TX%%" fill="#277C84" fill-opacity=".45" stroke="#92C13B" stroke-opacity=".55" stroke-width="6"/></svg>
+  <div class="topbar"><img class="logo" src="logo.png" alt="CMG Home Loans"></div>
   <div class="wrap">
-    <img class="logo" src="logo.png" alt="CMG Home Loans">
     <div class="kicker">Webinar</div>
-    <h1>Monthly<br>Mortgage<br>Roundtable</h1>
+    <h1><span>Monthly</span> <span>Mortgage</span> <span class="l3">Roundtable</span></h1>
     <div class="rule"></div>
-    <p class="tag">Stay current. Learn what&rsquo;s working.</p>
-    <p class="tag tag2">Open invite to mortgage professionals.</p>
+    <p class="tag">Stay current. Learn what&rsquo;s working. Open invite to mortgage professionals.</p>
   </div>
 </header>
 
@@ -139,7 +149,7 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
       <div class="loc" id="nLocal"></div>
       <div class="loc" id="nNote">Zoom Webinar. Free to attend. Registration is required.</div>
     </div>
-    <div><a id="reg" class="btn go" href="#">Register now</a></div>
+    <div class="joinbar"><a id="reg" class="btn go" href="#">Register now</a></div>
   </section>
 
   <section class="cd" id="cd" aria-label="Countdown to the next session">
@@ -153,7 +163,38 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
     <div class="cd-live" id="cdLive">We are live now.<br><a class="btn go big" id="regLive" href="#">Join now</a></div>
   </section>
 
-  <section class="sec" id="cal">
+  <section class="sec">
+    <h2>What to expect</h2>
+    <div class="cols">
+      <div class="col"><h3>Market Updates</h3><p>Rates, the economy, and the housing numbers that matter this month.</p></div>
+      <div class="col"><h3>Industry Updates</h3><p>What is changing in mortgage and real estate, and what it means for you.</p></div>
+      <div class="col"><h3>Success Spotlight</h3><p>A loan officer shares what is working: a program, a marketing idea, a script, or a sales strategy.</p></div>
+    </div>
+    <p class="lead" style="margin-top:20px">Everyone is welcome. Feel free to share this page with friends and teammates.</p>
+  </section>
+
+  <section class="sign" id="signup" aria-labelledby="signH">
+    <h2 id="signH">Stay in the loop</h2>
+    <p>Sign up to get content from each class, such as the slides and highlights, plus our monthly newsletter with industry news and what is working for other loan officers.</p>
+    <p class="why">There is no registration for the webinar, so this is also how we let you know if the date, the time, or anything else about the class changes, and what else we have coming up.</p>
+    <form name="roundtable-signup" method="POST" action="/?thanks=1" data-netlify="true" netlify-honeypot="bot-field" id="signForm">
+      <input type="hidden" name="form-name" value="roundtable-signup">
+      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <div><label for="fFirst">First name</label><input type="text" id="fFirst" name="first_name" autocomplete="given-name" required></div>
+      <div><label for="fLast">Last name</label><input type="text" id="fLast" name="last_name" autocomplete="family-name" required></div>
+      <div><label for="fCo">Company</label><input type="text" id="fCo" name="company" autocomplete="organization"></div>
+      <div><label for="fPh">Phone number</label><input type="tel" id="fPh" name="phone" autocomplete="tel"></div>
+      <div class="full"><label for="fEm">Email address</label><input type="email" id="fEm" name="email" autocomplete="email" required></div>
+      <div class="full"><button class="btn go" type="submit" id="signBtn">Sign me up</button></div>
+      <div class="full fine">By signing up, you agree to receive communications about this webinar and related news. You can unsubscribe at any time. Your information is not sold.</div>
+      <div class="full err" id="signErr">Something went wrong. Please try again in a moment.</div>
+    </form>
+    <div class="ok" id="signOk">Thank you. You are on the list.</div>
+  </section>
+
+</div>
+<div class="band"><div class="wrap">
+  <section id="cal">
     <h2>Add it to your calendar</h2>
     <p class="lead">Every entry links back to this page, so if the date or time ever changes, come back here for the latest.</p>
     <h3 class="sh">Every month <span>(first Wednesday, 10:30 AM Central)</span></h3>
@@ -184,35 +225,8 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
     </div>
   </section>
 
-  <section class="sign" id="signup" aria-labelledby="signH">
-    <h2 id="signH">Stay in the loop</h2>
-    <p>Sign up to get content from each class, such as the slides and highlights, plus our monthly newsletter with industry news and what is working for other loan officers.</p>
-    <p class="why">There is no registration for the webinar, so this is also how we let you know if the date, the time, or anything else about the class changes, and what else we have coming up.</p>
-    <form name="roundtable-signup" method="POST" action="/?thanks=1" data-netlify="true" netlify-honeypot="bot-field" id="signForm">
-      <input type="hidden" name="form-name" value="roundtable-signup">
-      <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-      <div><label for="fFirst">First name</label><input type="text" id="fFirst" name="first_name" autocomplete="given-name" required></div>
-      <div><label for="fLast">Last name</label><input type="text" id="fLast" name="last_name" autocomplete="family-name" required></div>
-      <div><label for="fCo">Company</label><input type="text" id="fCo" name="company" autocomplete="organization"></div>
-      <div><label for="fPh">Phone number</label><input type="tel" id="fPh" name="phone" autocomplete="tel"></div>
-      <div class="full"><label for="fEm">Email address</label><input type="email" id="fEm" name="email" autocomplete="email" required></div>
-      <div class="full"><button class="btn go" type="submit" id="signBtn">Sign me up</button></div>
-      <div class="full fine">By signing up, you agree to receive emails from CMG Home Loans about this webinar and related news. You can unsubscribe at any time. Your information is not sold.</div>
-      <div class="full err" id="signErr">Something went wrong. Please try again in a moment.</div>
-    </form>
-    <div class="ok" id="signOk">Thank you. You are on the list.</div>
-  </section>
-
-  <section class="sec">
-    <h2>What to expect</h2>
-    <div class="cols">
-      <div class="col"><h3>Market Updates</h3><p>Rates, the economy, and the housing numbers that matter this month.</p></div>
-      <div class="col"><h3>Industry Updates</h3><p>What is changing in mortgage and real estate, and what it means for you.</p></div>
-      <div class="col"><h3>Success Spotlight</h3><p>A loan officer shares what is working: a program, a marketing idea, a script, or a sales strategy.</p></div>
-    </div>
-    <p class="lead" style="margin-top:20px">Everyone is welcome. Feel free to share this page with friends and teammates.</p>
-  </section>
-
+</div></div>
+<div class="wrap">
   <section class="sec later" id="laterSec" style="display:none">
     <h2>More sessions</h2>
     <ul id="later"></ul>
@@ -226,6 +240,7 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
     <p>CMG Mortgage, Inc. dba CMG Home Loans, NMLS ID# 1820 (www.nmlsconsumeraccess.org). Equal Housing Opportunity. Registered Mortgage Banker with the Texas Department of Savings and Mortgage Lending. CMG Mortgage, Inc. is licensed in all 50 states, the District of Columbia, Guam, Puerto Rico and the Virgin Islands (www.cmgfi.com/corporate/licensing).</p>
   </div>
 </footer>
+<a id="stk" class="stk" href="#" target="_blank" rel="noopener">Join now</a>
 <div class="bar"></div>
 
 <script>window.__CFG=%%CFG%%;</script>
@@ -262,7 +277,7 @@ loadCfg().then(function(cfg){
   var title=cfg.title;
   var join=cfg.registrationRequired===false&&cfg.joinUrl;
   if(join){
-    var r=$('reg'); r.href=cfg.joinUrl; r.textContent='Join now'; r.classList.add('big'); r.parentNode.classList.add('join');
+    var r=$('reg'); r.href=cfg.joinUrl; r.textContent='Join now'; r.classList.add('big'); r.parentNode.classList.add('join'); $('stk').href=cfg.joinUrl; $('stk').textContent='Join now';
     r.target='_blank'; r.rel='noopener'; $('regLive').href=cfg.joinUrl;
     $('nNote').textContent='Zoom Webinar. Free to attend. No registration required. Just click Join now.';
   } else { $('reg').href=cfg.registerUrl; $('regLive').href=cfg.registerUrl; }
@@ -344,6 +359,13 @@ loadCfg().then(function(cfg){
       try{localStorage.setItem('mmrSigned','1')}catch(e){}
     }).catch(function(){er.style.display='block';b.disabled=false;b.textContent='Sign me up'});
   });
+})();
+
+(function(){
+  var r=document.getElementById('reg'),s=document.getElementById('stk'); if(!r||!s||!window.IntersectionObserver) return;
+  var hide={r:false,f:false};function upd(){s.classList.toggle('show',!hide.r&&!hide.f)}
+  new IntersectionObserver(function(e){hide.r=e[0].isIntersecting;upd()}).observe(r);
+  var f=document.getElementById('signup'); if(f) new IntersectionObserver(function(e){hide.f=e[0].isIntersecting;upd()}).observe(f);
 })();
 </script>
 </body>
