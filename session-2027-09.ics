@@ -1,0 +1,30 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Monthly Mortgage Roundtable//Calendar//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Monthly Mortgage Roundtable
+X-WR-TIMEZONE:America/Chicago
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VEVENT
+UID:session-2027-09@monthlymortgageroundtable.com
+DTSTAMP:20261029T031032Z
+SEQUENCE:0
+DTSTART:20270901T153000Z
+DTEND:20270901T163000Z
+SUMMARY:Monthly Mortgage Roundtable
+DESCRIPTION:https://www.MonthlyMortgageRoundtable.com\n\nNews\, updates\, 
+ and programs. Register and get details at the link above. If the date or 
+ time changes\, the latest is always on that page.
+LOCATION:https://www.MonthlyMortgageRoundtable.com
+URL:https://www.MonthlyMortgageRoundtable.com
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+TRIGGER:-PT15M
+ACTION:DISPLAY
+DESCRIPTION:Monthly Mortgage Roundtable starts in 15 minutes
+END:VALARM
+END:VEVENT
+END:VCALENDAR

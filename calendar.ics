@@ -7,17 +7,35 @@ X-WR-CALNAME:Monthly Mortgage Roundtable
 X-WR-TIMEZONE:America/Chicago
 REFRESH-INTERVAL;VALUE=DURATION:PT6H
 X-PUBLISHED-TTL:PT6H
+BEGIN:VTIMEZONE
+TZID:America/Chicago
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0600
+TZOFFSETTO:-0500
+TZNAME:CDT
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0600
+TZNAME:CST
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
 BEGIN:VEVENT
-UID:2026-11@monthlymortgageroundtable.com
-DTSTAMP:20261029T014908Z
+UID:series@monthlymortgageroundtable.com
+DTSTAMP:20261029T031032Z
 SEQUENCE:0
-DTSTART:20261104T163000Z
-DTEND:20261104T173000Z
+DTSTART;TZID=America/Chicago:20261104T103000
+DTEND;TZID=America/Chicago:20261104T113000
+RRULE:FREQ=MONTHLY;BYDAY=1WE
 SUMMARY:Monthly Mortgage Roundtable
-DESCRIPTION:News\, updates\, and programs. Register and get details: https
- ://www.MonthlyMortgageRoundtable.com
-LOCATION:Zoom Webinar - register at https://www.MonthlyMortgageRoundtable.
- com
+DESCRIPTION:https://www.MonthlyMortgageRoundtable.com\n\nNews\, updates\, 
+ and programs. Register and get details at the link above. If the date or 
+ time changes\, the latest is always on that page.
+LOCATION:https://www.MonthlyMortgageRoundtable.com
 URL:https://www.MonthlyMortgageRoundtable.com
 STATUS:CONFIRMED
 TRANSP:OPAQUE

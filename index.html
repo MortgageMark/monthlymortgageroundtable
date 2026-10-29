@@ -43,6 +43,8 @@ main .wrap{padding-top:36px;padding-bottom:20px}
 .sec p.lead{color:var(--mute);margin:14px 0 18px;max-width:720px}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 .grid .btn{padding:14px 14px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.sh{font:700 20px 'Kadwa',Georgia,serif;margin:22px 0 10px}
+.sh span{font:400 14px 'Open Sans',Arial,sans-serif;color:var(--mute)}
 .grid .btn small{font:400 13.5px 'Open Sans',Arial,sans-serif;opacity:.8;line-height:1.35}
 .grid .btn:hover small{opacity:1}
 .sub{margin-top:18px;border:1px solid var(--line);border-radius:12px;padding:20px 22px}
@@ -98,7 +100,13 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
 
   <section class="sec" id="cal">
     <h2>Add it to your calendar</h2>
-    <p class="lead">Pick your calendar. Every entry links back to this page, so if the date or time ever changes, come back here for the latest and add it again.</p>
+    <p class="lead">Every entry links back to this page, so if the date or time ever changes, come back here for the latest.</p>
+    <h3 class="sh">Every month <span>(first Wednesday, 10:30 AM Central)</span></h3>
+    <div class="grid">
+      <a class="btn alt" id="aIcsM" href="#" download><span>Apple Calendar or Outlook app</span><small>iPhone, Mac, and desktop Outlook. Downloads a repeating event.</small></a>
+      <a class="btn alt" id="aGoogleM" href="#" target="_blank" rel="noopener"><span>Google Calendar</span><small>Gmail and Google accounts</small></a>
+    </div>
+    <h3 class="sh">Just this session</h3>
     <div class="grid">
       <a class="btn alt" id="aIcs" href="#" download><span>Apple Calendar or Outlook app</span><small>iPhone, Mac, and desktop Outlook. Downloads a file; open it to add.</small></a>
       <a class="btn alt" id="aGoogle" href="#" target="_blank" rel="noopener"><span>Google Calendar</span><small>Gmail and Google accounts</small></a>
@@ -108,7 +116,7 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
 
     <div class="sub">
       <h3>Want changes to update by themselves?</h3>
-      <p>Subscribe once to the Monthly Mortgage Roundtable calendar. Future sessions, and any time changes, show up in your calendar automatically. Updates can take a few hours to appear.</p>
+      <p>Subscribe once to the Monthly Mortgage Roundtable calendar. Every monthly session, and any date or time change, shows up in your calendar automatically. Updates can take a few hours to appear.</p>
       <a class="btn alt" id="aSub" href="#">Subscribe (Apple, Outlook)</a>
       <div class="how">
         <h4>Subscribe in Google Calendar or Outlook on the web</h4>
@@ -146,7 +154,7 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
 </footer>
 <div class="bar"></div>
 
-<script>window.__CFG={"registerUrl": "https://us02web.zoom.us/webinar/register/WN_pOHZPHIpRVeca8INPfO1dg", "pageUrl": "https://www.MonthlyMortgageRoundtable.com", "title": "Monthly Mortgage Roundtable", "tagline": "News, updates, and programs", "sessions": [{"id": "2026-11", "start": "2026-11-04T10:30:00-06:00", "minutes": 60, "status": "scheduled", "previousStart": "", "sequence": 0, "note": ""}]};</script>
+<script>window.__CFG={"registerUrl": "https://us02web.zoom.us/webinar/register/WN_pOHZPHIpRVeca8INPfO1dg", "pageUrl": "https://www.MonthlyMortgageRoundtable.com", "title": "Monthly Mortgage Roundtable", "tagline": "News, updates, and programs", "series": {"rule": "FREQ=MONTHLY;BYDAY=1WE", "time": "10:30", "minutes": 60, "anchor": "2026-11-04"}, "overrides": [], "_help": "overrides example: {\"month\":\"2026-12\",\"start\":\"2026-12-09T10:30:00-06:00\",\"minutes\":60,\"status\":\"rescheduled\",\"note\":\"\"} ; status can be rescheduled or cancelled"};</script>
 <script>
 (function(){
 var TZ='America/Chicago';
@@ -155,53 +163,62 @@ function z(n){return n<10?'0'+n:''+n}
 function zulu(d){return d.getUTCFullYear()+z(d.getUTCMonth()+1)+z(d.getUTCDate())+'T'+z(d.getUTCHours())+z(d.getUTCMinutes())+z(d.getUTCSeconds())+'Z'}
 function fDate(d,tz){return new Intl.DateTimeFormat('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric',timeZone:tz}).format(d)}
 function fTime(d,tz,zone){return new Intl.DateTimeFormat('en-US',{hour:'numeric',minute:'2-digit',timeZone:tz,timeZoneName:zone?'short':undefined}).format(d)}
-function esc(s){return String(s).replace(/\\/g,'\\\\').replace(/;/g,'\\;').replace(/,/g,'\\,').replace(/\n/g,'\\n')}
 function fetchJSON(){return fetch('sessions.json?'+Date.now()).then(function(r){return r.text()}).then(function(x){return JSON.parse(x)})}
 function loadCfg(){return fetchJSON().catch(function(){if(window.__CFG)return window.__CFG;throw new Error('no schedule')})}
+function offMin(d){var p=new Intl.DateTimeFormat('en-US',{timeZone:TZ,hourCycle:'h23',year:'numeric',month:'numeric',day:'numeric',hour:'numeric',minute:'numeric',second:'numeric'}).formatToParts(d),o={};p.forEach(function(x){o[x.type]=+x.value});return (Date.UTC(o.year,o.month-1,o.day,o.hour,o.minute,o.second)-Math.floor(d.getTime()/1000)*1000)/60000}
+function chi(y,m0,d,h,mi){var w=Date.UTC(y,m0,d,h,mi),t=w;for(var i=0;i<3;i++){t=w-offMin(new Date(t))*60000}return new Date(t)}
+function firstWed(y,m0){var d=1;while(new Date(Date.UTC(y,m0,d)).getUTCDay()!==3)d++;return d}
 loadCfg().then(function(cfg){
-  var now=Date.now();
-  var all=cfg.sessions.map(function(s){var st=new Date(s.start);return Object.assign({},s,{st:st,en:new Date(st.getTime()+s.minutes*60000)})}).sort(function(a,b){return a.st-b.st});
-  var up=all.filter(function(s){return s.en.getTime()>now && s.status!=='cancelled'});
-  var s=up[0]||all[all.length-1];
+  var now=Date.now(), ser=cfg.series||{time:'10:30',minutes:60,anchor:'2026-11-04'};
+  var hm=ser.time.split(':'), ah=+hm[0], am=+hm[1], an=ser.anchor.split('-');
+  var anchor=chi(+an[0],+an[1]-1,+an[2],ah,am).getTime();
+  var ov={}; (cfg.overrides||[]).forEach(function(o){ov[o.month]=o});
+  var occ=[], base=new Date(now), y=base.getUTCFullYear(), m=base.getUTCMonth();
+  for(var k=-1;k<14;k++){
+    var yy=y+Math.floor((m+k)/12), mm=((m+k)%12+12)%12, key=yy+'-'+z(mm+1);
+    var orig=chi(yy,mm,firstWed(yy,mm),ah,am);
+    if(orig.getTime()<anchor) continue;
+    var o=ov[key], st=orig, mins=ser.minutes, status='scheduled', note='';
+    if(o){ if(o.start) st=new Date(o.start); if(o.minutes) mins=o.minutes; status=o.status||'rescheduled'; note=o.note||''; }
+    occ.push({key:key,orig:orig,st:st,en:new Date(st.getTime()+mins*60000),minutes:mins,status:status,note:note});
+  }
+  var up=occ.filter(function(x){return x.en.getTime()>now});
+  var s=up.filter(function(x){return x.status!=='cancelled'})[0];
   if(!s){$('nDate').textContent='Check back soon';return}
   var title=cfg.title;
   $('reg').href=cfg.registerUrl;
   $('nDate').textContent=fDate(s.st,TZ);
   $('nTime').textContent=fTime(s.st,TZ)+' to '+fTime(s.en,TZ,true);
-  var loc=fTime(s.st,undefined,true), ct=fTime(s.st,TZ,true);
-  var localDay=fDate(s.st,undefined);
+  var loc=fTime(s.st,undefined,true), ct=fTime(s.st,TZ,true), localDay=fDate(s.st,undefined);
   if(loc!==ct||localDay!==fDate(s.st,TZ)){$('nLocal').textContent='In your time zone: '+localDay+', '+loc}
-  // banner
-  var b=$('banner');
+  var b=$('banner'), msgs=[];
+  up.forEach(function(x){
+    if(x.status==='cancelled'&&x.st<=s.st) msgs.push('<b>Canceled.</b> The '+fDate(x.orig,TZ)+' session will not take place.'+(x.note?' '+x.note:''));
+  });
   if(s.status==='rescheduled'){
-    var prev=s.previousStart?(' It was '+fDate(new Date(s.previousStart),TZ)+' at '+fTime(new Date(s.previousStart),TZ,true)+'.'):'';
-    b.innerHTML='<b>Rescheduled.</b> The new date and time are below.'+prev+' If you already added this to your calendar, please delete the old entry and add it again.';
-    b.style.display='block';
-  } else if(s.status==='cancelled'){
-    b.innerHTML='<b>Canceled.</b> This session will not take place.'+(s.note?' '+s.note:'');
-    b.style.display='block';
-  } else if(s.note){b.innerHTML='<b>Note:</b> '+s.note;b.style.display='block'}
-  // calendar content
-  var desc=cfg.tagline+'. Register and get details: '+cfg.pageUrl+'. If the date or time changes, the latest is always on that page.';
-  var where='Zoom Webinar - register at '+cfg.pageUrl;
+    msgs.push('<b>Rescheduled.</b> The new date and time are below. It was '+fDate(s.orig,TZ)+' at '+fTime(s.orig,TZ,true)+'. If you already added this to your calendar, please delete the old entry and add it again.');
+  } else if(s.note){msgs.push('<b>Note:</b> '+s.note)}
+  if(msgs.length){b.innerHTML=msgs.join('<br>');b.style.display='block'}
+  var link=cfg.pageUrl;
+  var desc=link+'\n\n'+cfg.tagline+'. Register and get details at the link above. If the date or time changes, the latest is always on that page.';
   var gS=zulu(s.st), gE=zulu(s.en);
-  $('aGoogle').href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+'&dates='+gS+'/'+gE+'&details='+encodeURIComponent(desc)+'&location='+encodeURIComponent(where);
-  var q='&rru=addevent&subject='+encodeURIComponent(title)+'&startdt='+encodeURIComponent(s.st.toISOString())+'&enddt='+encodeURIComponent(s.en.toISOString())+'&body='+encodeURIComponent(desc)+'&location='+encodeURIComponent(where);
+  $('aGoogle').href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+'&dates='+gS+'/'+gE+'&details='+encodeURIComponent(desc)+'&location='+encodeURIComponent(link);
+  $('aGoogleM').href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+'&dates='+gS+'/'+gE+'&details='+encodeURIComponent(desc)+'&location='+encodeURIComponent(link)+'&ctz='+TZ+'&recur='+encodeURIComponent('RRULE:'+(ser.rule||'FREQ=MONTHLY;BYDAY=1WE'));
+  var q='&rru=addevent&subject='+encodeURIComponent(title)+'&startdt='+encodeURIComponent(s.st.toISOString())+'&enddt='+encodeURIComponent(s.en.toISOString())+'&body='+encodeURIComponent(desc.replace(/\n/g,'<br>'))+'&location='+encodeURIComponent(link);
   $('aOutlook').href='https://outlook.live.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose'+q;
   $('aM365').href='https://outlook.office.com/calendar/0/deeplink/compose?path=%2Fcalendar%2Faction%2Fcompose'+q;
-  var a=$('aIcs');a.href='session-'+s.id+'.ics';
-  // subscribe
+  $('aIcs').href='session-'+s.key+'.ics';
+  $('aIcsM').href='monthly.ics';
   var feedUrl=location.protocol+'//'+location.host+location.pathname.replace(/[^\/]*$/,'')+'calendar.ics';
   $('aSub').href='webcal://'+feedUrl.replace(/^https?:\/\//,'');
   $('feed').textContent=feedUrl;
   $('copy').onclick=function(){try{navigator.clipboard.writeText(feedUrl);this.textContent='Copied'}catch(e){this.textContent='Select and copy the link'}};
-  // later sessions
-  var rest=up.filter(function(x){return x!==s});
+  var rest=up.filter(function(x){return x!==s&&x.status!=='cancelled'}).slice(0,3);
   if(rest.length){
     $('later').innerHTML=rest.map(function(x){return '<li><span><b>'+fDate(x.st,TZ)+'</b> &middot; '+fTime(x.st,TZ,true)+'</span>'+(x.status==='rescheduled'?'<span class="pill">Rescheduled</span>':'')+'</li>'}).join('');
     $('laterSec').style.display='block';
   }
-}).catch(function(){
+}).catch(function(e){
   $('nDate').textContent='Check back soon';
   $('nTime').textContent='We could not load the schedule. Please refresh.';
 });

@@ -1,14 +1,17 @@
 MONTHLY MORTGAGE ROUNDTABLE - website files
 
-TO PUBLISH: on Netlify, drag this whole folder (unzipped) onto "Deploy manually".
-BEFORE YOU PUBLISH: open sessions.json and replace the registerUrl with your Zoom registration link.
+The page repeats automatically on the FIRST WEDNESDAY of each month at 10:30 AM Central (1 hour).
+You only edit sessions.json when something changes.
 
-EACH MONTH / WHEN A TIME CHANGES:
-1. Edit sessions.json (add the new session, or change "start").
-   - start format: 2026-12-02T11:00:00-06:00  (-06:00 = winter Central time, -05:00 = summer)
-   - to reschedule: set "status" to "rescheduled", put the old time in "previousStart", and add 1 to "sequence"
-   - to cancel: set "status" to "cancelled"
-   - give every session a unique "id", like 2026-12
-2. Run: python3 generate_ics.py   (or send sessions.json to Claude and ask for the updated calendar files)
-3. Re-deploy the folder.
-Do not use the files named session-*.ics or calendar.ics as a place to edit; they are generated.
+CHANGE OR CANCEL ONE MONTH: add an entry to "overrides" in sessions.json, for example:
+  "overrides": [
+    {"month":"2026-12","start":"2026-12-09T10:30:00-06:00","minutes":60,"status":"rescheduled","note":""}
+  ]
+  - "month" is the month the session normally falls in (YYYY-MM)
+  - "start" is the new date and time. -06:00 = winter Central time, -05:00 = summer (Mar-Nov)
+  - to cancel instead: {"month":"2026-12","status":"cancelled"}
+THEN: run  python3 generate_ics.py  (or send sessions.json to Claude and ask for updated files)
+THEN: upload index.html, sessions.json, calendar.ics, monthly.ics and the session-*.ics files to GitHub (or drag the folder onto Netlify).
+
+CHANGE THE REGISTRATION LINK: edit "registerUrl" in sessions.json, then run generate_ics.py and re-upload.
+Do not edit the .ics files or index.html by hand; they are generated.
