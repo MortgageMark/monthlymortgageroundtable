@@ -18,15 +18,13 @@ a{color:var(--teal)}
 .hero{background:var(--slate);color:#fff;position:relative;overflow:hidden}
 .hero svg.tx{position:absolute;right:-60px;top:-30px;width:520px;opacity:.9;pointer-events:none}
 .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 100%,rgba(146,193,59,.28),transparent 55%),radial-gradient(circle at 85% 20%,rgba(19,136,144,.30),transparent 50%)}
-.topbar{position:relative;padding:22px 24px 36px}
-.logo{display:block;width:170px;height:auto}
-.ttl{text-align:center}
+.topbar{position:relative;padding:16px 24px 0}
+.logo{display:block;width:150px;height:auto}
+.ttl{position:relative;max-width:1080px;margin:0 auto;padding:20px 24px 38px;text-align:left}
 .kicker{color:var(--green);font-weight:700;letter-spacing:.28em;text-transform:uppercase;font-size:14px}
-.hero h1{font-size:clamp(38px,5vw,58px);letter-spacing:.03em;text-transform:uppercase;margin-top:6px}
+.hero h1{font-size:clamp(38px,5vw,60px);letter-spacing:.03em;text-transform:uppercase;margin-top:6px}
 .hero h1 span{display:block}
-@media(min-width:900px){.logo{position:absolute;left:24px;top:22px}.ttl{padding:0 200px}}
-@media(max-width:899px){.ttl{margin-top:22px}.hero h1{font-size:clamp(36px,9vw,56px)}}
-.rule{width:96px;height:6px;background:var(--green);margin:16px auto}
+.rule{width:96px;height:6px;background:var(--green);margin:16px 0}
 .tag{font-size:clamp(18px,2.4vw,24px);color:#d5e3e6}
 main .wrap{padding-top:36px;padding-bottom:20px}
 .banner{display:none;border-left:8px solid var(--green);background:var(--slate);color:#fff;padding:18px 22px;border-radius:6px;margin-bottom:24px;font-size:18px}
@@ -131,12 +129,12 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
   <svg class="tx" viewBox="0 0 1062 1000" aria-hidden="true"><path d="%%TX%%" fill="#277C84" fill-opacity=".45" stroke="#92C13B" stroke-opacity=".55" stroke-width="6"/></svg>
   <div class="topbar">
     <img class="logo" src="logo.png" alt="CMG Home Loans">
-    <div class="ttl">
+  </div>
+  <div class="ttl">
       <div class="kicker">Webinar</div>
       <h1><span>Monthly</span> <span>Mortgage</span> <span>Roundtable</span></h1>
       <div class="rule"></div>
       <p class="tag">Stay current. Learn what&rsquo;s working.</p>
-    </div>
   </div>
 </header>
 
