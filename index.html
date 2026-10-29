@@ -76,6 +76,7 @@ main .wrap{padding-top:36px;padding-bottom:20px}
 .sign label{display:block;font:600 13px 'Open Sans',Arial,sans-serif;letter-spacing:.04em;margin-bottom:5px;color:#fff}
 .sign input[type=text],.sign input[type=email],.sign input[type=tel]{width:100%;box-sizing:border-box;font:400 17px 'Open Sans',Arial,sans-serif;padding:13px 14px;border-radius:8px;border:2px solid transparent;background:#fff;color:var(--slate)}
 .sign input:focus{outline:none;border-color:var(--green)}
+.sign .req{color:#FF7A6B;font-weight:700}
 .sign .full{grid-column:1/-1}
 .sign .fine{font-size:13px;color:#C9D3DA;line-height:1.5}
 .sign .hp{position:absolute;left:-9999px}
@@ -178,12 +179,13 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
     <form name="roundtable-signup" method="POST" action="/?thanks=1" data-netlify="true" netlify-honeypot="bot-field" id="signForm">
       <input type="hidden" name="form-name" value="roundtable-signup">
       <p class="hp"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-      <div><label for="fFirst">First name</label><input type="text" id="fFirst" name="first_name" autocomplete="given-name" required></div>
-      <div><label for="fLast">Last name</label><input type="text" id="fLast" name="last_name" autocomplete="family-name" required></div>
-      <div><label for="fCo">Company</label><input type="text" id="fCo" name="company" autocomplete="organization" required></div>
-      <div><label for="fPh">Phone number</label><input type="tel" id="fPh" name="phone" autocomplete="tel" required></div>
-      <div class="full"><label for="fEm">Email address</label><input type="email" id="fEm" name="email" autocomplete="email" required></div>
+      <div><label for="fFirst">First name <span class="req" aria-hidden="true">*</span></label><input type="text" id="fFirst" name="first_name" autocomplete="given-name" required></div>
+      <div><label for="fLast">Last name <span class="req" aria-hidden="true">*</span></label><input type="text" id="fLast" name="last_name" autocomplete="family-name" required></div>
+      <div><label for="fCo">Company <span class="req" aria-hidden="true">*</span></label><input type="text" id="fCo" name="company" autocomplete="organization" required></div>
+      <div><label for="fPh">Phone number <span class="req" aria-hidden="true">*</span></label><input type="tel" id="fPh" name="phone" autocomplete="tel" inputmode="tel" placeholder="(555) 555-5555" maxlength="14" pattern="\(\d{3}\) \d{3}-\d{4}" title="Enter a 10-digit phone number, like (555) 555-5555" required></div>
+      <div class="full"><label for="fEm">Email address <span class="req" aria-hidden="true">*</span></label><input type="email" id="fEm" name="email" autocomplete="email" required></div>
       <div class="full"><button class="btn go" type="submit" id="signBtn">Sign me up</button></div>
+      <div class="full fine"><span class="req">*</span> Required field.</div>
       <div class="full fine">By signing up, you agree to receive communications about this webinar and related news. You can unsubscribe at any time. Your information is not sold.</div>
       <div class="full err" id="signErr">Something went wrong. Please try again in a moment.</div>
     </form>
@@ -371,6 +373,18 @@ loadCfg().then(function(cfg){
     document.getElementById('signOk').style.display='none';
     document.getElementById('signForm').style.display='grid';
     var i=document.getElementById('fFirst'); if(i) i.focus();
+  });
+})();
+
+(function(){
+  var p=document.getElementById('fPh'); if(!p) return;
+  p.addEventListener('input',function(){
+    var d=p.value.replace(/\D/g,''); if(d[0]==='1') d=d.slice(1); d=d.slice(0,10);
+    var o=d;
+    if(d.length>6) o='('+d.slice(0,3)+') '+d.slice(3,6)+'-'+d.slice(6);
+    else if(d.length>3) o='('+d.slice(0,3)+') '+d.slice(3);
+    else if(d.length>0) o='('+d;
+    p.value=o;
   });
 })();
 </script>
