@@ -18,14 +18,13 @@ a{color:var(--teal)}
 .hero{background:var(--slate);color:#fff;position:relative;overflow:hidden}
 .hero svg.tx{position:absolute;right:-60px;top:-30px;width:520px;opacity:.9;pointer-events:none}
 .hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 100% 100%,rgba(146,193,59,.28),transparent 55%),radial-gradient(circle at 85% 20%,rgba(19,136,144,.30),transparent 50%)}
-.topbar{position:relative;padding:18px 28px 0}
-.hero .wrap{position:relative;padding-top:22px;padding-bottom:40px}
-.logo{display:block;width:170px;height:auto}
+.topbar{position:relative;padding:22px 24px 34px;display:flex;align-items:center;gap:44px}
+.logo{display:block;width:170px;height:auto;flex:none}
 .kicker{color:var(--green);font-weight:700;letter-spacing:.28em;text-transform:uppercase;font-size:14px}
-.hero h1{font-size:clamp(38px,6vw,64px);letter-spacing:.03em;text-transform:uppercase;margin-top:8px}
-.hero h1 span{display:block}
-@media(min-width:900px){.hero h1 span{display:inline}.hero h1 .l3{display:block}}
-.rule{width:96px;height:6px;background:var(--green);margin:18px 0}
+.hero h1{font-size:clamp(34px,4.6vw,56px);letter-spacing:.03em;text-transform:uppercase;margin-top:6px}
+.hero h1 span{display:inline}
+@media(max-width:899px){.topbar{display:block;padding-bottom:30px}.ttl{margin-top:22px}.hero h1{font-size:clamp(36px,9vw,56px)}.hero h1 span{display:block}}
+.rule{width:96px;height:6px;background:var(--green);margin:16px 0}
 .tag{font-size:clamp(18px,2.4vw,24px);color:#d5e3e6}
 main .wrap{padding-top:36px;padding-bottom:20px}
 .banner{display:none;border-left:8px solid var(--green);background:var(--slate);color:#fff;padding:18px 22px;border-radius:6px;margin-bottom:24px;font-size:18px}
@@ -128,12 +127,14 @@ footer p{font-size:13.5px;line-height:1.55;max-width:960px}
 <div class="bar"></div>
 <header class="hero">
   <svg class="tx" viewBox="0 0 1062 1000" aria-hidden="true"><path d="%%TX%%" fill="#277C84" fill-opacity=".45" stroke="#92C13B" stroke-opacity=".55" stroke-width="6"/></svg>
-  <div class="topbar"><img class="logo" src="logo.png" alt="CMG Home Loans"></div>
-  <div class="wrap">
-    <div class="kicker">Webinar</div>
-    <h1><span>Mortgage</span> <span>Roundtable</span></h1>
-    <div class="rule"></div>
-    <p class="tag">Stay current. Learn what&rsquo;s working.</p>
+  <div class="topbar">
+    <img class="logo" src="logo.png" alt="CMG Home Loans">
+    <div class="ttl">
+      <div class="kicker">Webinar</div>
+      <h1><span>Monthly</span> <span>Mortgage</span> <span>Roundtable</span></h1>
+      <div class="rule"></div>
+      <p class="tag">Stay current. Learn what&rsquo;s working.</p>
+    </div>
   </div>
 </header>
 
